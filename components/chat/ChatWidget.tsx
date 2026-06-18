@@ -173,7 +173,7 @@ export function ChatWidget() {
           }
         }, 0);
       }
-  }, [input, isStreaming, messages, mode]);
+  }, [input, isStreaming, messages]);
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLTextAreaElement>) => {
     if (event.key === "Enter" && !event.shiftKey) {
