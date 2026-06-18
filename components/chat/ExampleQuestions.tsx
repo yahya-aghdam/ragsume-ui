@@ -16,7 +16,6 @@ export function ExampleQuestions() {
   const [selected, setSelected] = useState<string[]>([]);
 
   // After the component mounts on the client, generate a random subset.
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     // Defer state update to avoid synchronous setState warning.
     const timer = setTimeout(() => {
@@ -45,6 +44,17 @@ export function ExampleQuestions() {
           <li key={i}>{q}</li>
         ))}
       </ul>
+      <p className="mt-8">
+        You can see source in here: 
+      </p>
+      <div className="flex flex-col">
+        <span className="mt-1">
+          Core: <a href="https://github.com/yahya-aghdam/ragsume-core">https://github.com/yahya-aghdam/ragsume-core</a>
+        </span>
+        <span>
+          UI: <a href="https://github.com/yahya-aghdam/ragsume-ui">https://github.com/yahya-aghdam/ragsume-ui</a>
+        </span>
+      </div>
     </div>
   );
 }
