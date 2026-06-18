@@ -12,6 +12,7 @@ import type {
 import { JDMatcher } from "@/components/matcher/JDMatcher";
 import { MessageBubble } from "./MessageBubble";
 import { SourceTrace } from "./SourceTrace";
+import { ExampleQuestions } from "./ExampleQuestions";
 
 function createId(): string {
   return crypto.randomUUID();
@@ -142,11 +143,18 @@ export function ChatWidget() {
         content: `Error: ${message}`,
         isStreaming: false,
       });
-    } finally {
-      setIsStreaming(false);
-      abortRef.current = null;
-      inputRef.current?.focus();
-    }
+      } finally {
+        setIsStreaming(false);
+        abortRef.current = null;
+        // Refocus the textarea after the state updates have been applied
+        setTimeout(() => {
+          if (inputRef.current) {
+            inputRef.current.focus();
+            const length = inputRef.current.value.length;
+            inputRef.current.setSelectionRange(length, length);
+          }
+        }, 0);
+      }
   }, [input, isStreaming, messages, mode]);
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLTextAreaElement>) => {
@@ -253,9 +261,7 @@ export function ChatWidget() {
             className="flex-1 overflow-y-auto px-4 py-4"
           >
             {messages.length === 0 ? (
-              <p className="font-mono text-xs text-text-muted">
-                Ask about project history, tech decisions, or outcomes.
-              </p>
+                <ExampleQuestions />
             ) : (
               <ul className="flex flex-col gap-6">
                 {messages.map((message) => (
@@ -294,22 +300,24 @@ export function ChatWidget() {
               <label htmlFor="chat-input" className="sr-only">
                 Message
               </label>
-              <textarea
-                ref={inputRef}
-                id="chat-input"
-                rows={2}
-                value={input}
-                onChange={(event) => setInput(event.target.value)}
-                onKeyDown={handleKeyDown}
-                disabled={isStreaming}
-                placeholder="Ask a question…"
-                className="focus-ring min-h-[2.75rem] flex-1 resize-none border border-border bg-bg-surface px-3 py-2 text-sm text-text-primary placeholder:text-text-muted disabled:opacity-50"
-              />
-              <button
-                type="submit"
-                disabled={isStreaming || !input.trim()}
-                className="focus-ring shrink-0 border border-border bg-bg-elevated px-4 py-2 font-mono text-xs text-text-primary transition-colors hover:bg-bg-surface disabled:opacity-50 sm:py-2.5"
-              >
+                <textarea
+                  ref={inputRef}
+                  id="chat-input"
+                  rows={2}
+                  value={input}
+                  onChange={(event) => setInput(event.target.value)}
+                  onKeyDown={handleKeyDown}
+                  disabled={isStreaming}
+                  placeholder="Ask a question…"
+                  autoFocus
+                  className="focus-ring min-h-[2.75rem] flex-1 resize-none border border-border bg-bg-surface px-3 py-2 text-sm text-text-primary placeholder:text-text-muted disabled:opacity-50"
+                />
+                  <button
+                    type="submit"
+                    disabled={isStreaming || !input.trim()}
+                    onMouseDown={(e) => e.preventDefault()}
+                    className="focus-ring shrink-0 border border-border bg-bg-elevated px-4 py-2 font-mono text-xs text-text-primary transition-colors hover:bg-bg-surface disabled:opacity-50 sm:py-2.5"
+                  >
                 {isStreaming ? "Streaming…" : "Send"}
               </button>
             </div>
