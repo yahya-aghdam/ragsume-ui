@@ -57,6 +57,22 @@ export function ChatWidget() {
     );
   }, []);
 
+  // Global Escape key listener to allow cancelling the stream even when the textarea
+  // does not have focus (e.g., when clicking the Cancel button or other UI elements).
+  // Placed after `cancelStream` declaration so the function is in scope.
+  useEffect(() => {
+    const escHandler = (e: KeyboardEvent) => {
+      if (e.key === "Escape" && isStreaming) {
+        e.preventDefault();
+        cancelStream();
+      }
+    };
+    window.addEventListener("keydown", escHandler);
+    return () => {
+      window.removeEventListener("keydown", escHandler);
+    };
+  }, [isStreaming, cancelStream]);
+
   const handleSend = useCallback(async () => {
     const trimmed = input.trim();
     if (!trimmed || isStreaming) {
