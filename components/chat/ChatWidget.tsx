@@ -13,6 +13,7 @@ import { JDMatcher } from "@/components/matcher/JDMatcher";
 import { MessageBubble } from "./MessageBubble";
 import { SourceTrace } from "./SourceTrace";
 import { ExampleQuestions } from "./ExampleQuestions";
+import Image from "next/image";
 
 function createId(): string {
   return crypto.randomUUID();
@@ -179,9 +180,7 @@ export function ChatWidget() {
     <div className="mx-auto flex h-dvh w-full max-w-3xl flex-col">
       <header className="shrink-0 border-b border-border px-4 py-3">
         <div className="flex items-center justify-between gap-3">
-          <h1 className="font-mono text-sm tracking-tight text-text-primary">
-            RAGsume
-          </h1>
+        <Image src="/logo.svg" alt="RAGsume logo" width={300} height={150} />
 
           <nav
             className="flex gap-0 border border-border"
