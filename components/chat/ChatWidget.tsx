@@ -197,7 +197,7 @@ export function ChatWidget() {
     <div className="mx-auto flex h-dvh w-full max-w-3xl flex-col">
       <header className="shrink-0 border-b border-border px-4 py-3">
         <div className="flex items-center justify-between gap-3">
-        <Image src="/logo.svg" alt="RAGsume logo" width={300} height={150} loading="eager"/>
+        <Image src="/logo.svg" alt="RAGsume logo" width={300} height={150} style={{ width: 300, height: 150 }} loading="eager"/>
 
           <nav
             className="flex gap-0 border border-border"
@@ -232,7 +232,7 @@ export function ChatWidget() {
 
         {activeTab === "chat" && (
           <div
-            className="mt-3 flex gap-0 border border-border w-fit"
+            className="mt-1 flex gap-0 border border-border w-fit"
             role="group"
             aria-label="Response mode"
           >
@@ -312,27 +312,27 @@ export function ChatWidget() {
               void handleSend();
             }}
           >
-            <div className="flex flex-col gap-2 sm:flex-row sm:items-end">
+          <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-center">
               <label htmlFor="chat-input" className="sr-only">
                 Message
               </label>
-                <textarea
-                  ref={inputRef}
-                  id="chat-input"
-                  rows={2}
-                  value={input}
-                  onChange={(event) => setInput(event.target.value)}
-                  onKeyDown={handleKeyDown}
-                  disabled={isStreaming}
-                  placeholder="Ask a question…"
-                  autoFocus
-                  className="focus-ring min-h-[2.75rem] flex-1 resize-none border border-border bg-bg-surface px-3 py-2 text-sm text-text-primary placeholder:text-text-muted disabled:opacity-50"
-                />
+                  <textarea
+                    ref={inputRef}
+                    id="chat-input"
+                    rows={2}
+                    value={input}
+                    onChange={(event) => setInput(event.target.value)}
+                    onKeyDown={handleKeyDown}
+                    disabled={isStreaming}
+                    placeholder="Ask a question…"
+                    autoFocus
+                    className="focus-ring min-h-[2.75rem] flex-1 resize-none border border-border bg-bg-surface px-3 py-2 text-sm text-text-primary placeholder:text-text-muted disabled:opacity-50"
+                  />
                   <button
                     type="submit"
                     disabled={isStreaming || !input.trim()}
                     onMouseDown={(e) => e.preventDefault()}
-                    className="focus-ring shrink-0 border border-border bg-bg-elevated px-4 py-2 font-mono text-xs text-text-primary transition-colors hover:bg-bg-surface disabled:opacity-50 sm:py-2.5"
+                    className="focus-ring shrink-0 border border-border bg-bg-elevated px-4 py-2 font-mono text-xs text-text-primary transition-colors hover:bg-bg-surface disabled:opacity-50 sm:py-2.5 mx-auto"
                   >
                 {isStreaming ? "Streaming…" : "Send"}
               </button>
@@ -349,6 +349,7 @@ export function ChatWidget() {
                 </button>
               </div>
             )}
+            <div className="font-mono text-xs mt-3 justify-center text-gray-600">Note: This project works with AI, and AI can make mistakes.</div>
           </form>
         </div>
       ) : (

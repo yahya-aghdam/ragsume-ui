@@ -40,12 +40,32 @@ export function ExampleQuestions() {
   return (
     <div className="font-mono text-xs text-text-muted">
       <div className="font-bold mt-2 text-lg">You are in AI based resume of `Yahya Parvin Aghdam`</div>
-      <div className="mt-2 mb-5">Linkden: <a href="https://www.linkedin.com/in/yahya-aghdam" target="_blank" >https://www.linkedin.com/in/yahya-aghdam</a></div>
+      <div className="mt-2 mb-5">Linkedin: <a href="https://www.linkedin.com/in/yahya-aghdam" target="_blank" >https://www.linkedin.com/in/yahya-aghdam</a></div>
       <p className="mb-2">Try one of these example questions:</p>
       <ul className="list-disc list-inside space-y-1">
-        {selected.map((q, i) => (
-          <li key={i}>{q}</li>
-        ))}
+          {selected.map((q, i) => (
+            <li
+              key={i}
+              className="cursor-pointer hover:underline"
+              onClick={() => {
+                const el = document.getElementById('chat-input') as HTMLTextAreaElement | null;
+                if (el) {
+                  el.value = q;
+                  // Dispatch input and change events to ensure React state updates
+                  // Use InputEvent for better compatibility with React's synthetic event system
+                  // Create an InputEvent with the new value to ensure React captures it correctly
+                  // Use InputEvent with the new text so React's synthetic event system captures the value.
+                  const inputEvent = new InputEvent('input', { bubbles: true, cancelable: true, data: q });
+                  const changeEvent = new Event('change', { bubbles: true, cancelable: true });
+                  el.dispatchEvent(inputEvent);
+                  el.dispatchEvent(changeEvent);
+                  el.focus();
+                }
+              }}
+            >
+              {q}
+            </li>
+          ))}
       </ul>
       <p className="mt-8">
         You can see the sources in here: 
