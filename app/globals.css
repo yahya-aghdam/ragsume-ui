@@ -8,6 +8,9 @@
   --text-muted: #8a8884;
   --border: #3a3a3e;
   --accent: #c9a87c;
+  /* Scrollbar colors */
+  --scrollbar-bg: #2e2e32; /* track background */
+  --scrollbar-thumb: #c9a87c; /* thumb color */
 }
 
 @theme inline {
@@ -26,6 +29,31 @@ body {
   background: var(--bg-base);
   color: var(--text-primary);
   font-family: var(--font-sans), system-ui, sans-serif;
+}
+
+/* Custom scrollbar styling for WebKit browsers */
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+html::-webkit-scrollbar-track,
+body::-webkit-scrollbar-track {
+  background: var(--scrollbar-bg);
+}
+
+html::-webkit-scrollbar-thumb,
+body::-webkit-scrollbar-thumb {
+  background-color: var(--scrollbar-thumb);
+  border-radius: 6px;
+  border: 3px solid var(--scrollbar-bg);
+}
+
+/* Firefox */
+html, body {
+  scrollbar-width: thin;
+  scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-bg);
 }
 
 .focus-ring:focus-visible {

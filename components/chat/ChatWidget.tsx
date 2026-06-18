@@ -180,7 +180,7 @@ export function ChatWidget() {
     <div className="mx-auto flex h-dvh w-full max-w-3xl flex-col">
       <header className="shrink-0 border-b border-border px-4 py-3">
         <div className="flex items-center justify-between gap-3">
-        <Image src="/logo.svg" alt="RAGsume logo" width={300} height={150} />
+        <Image src="/logo.svg" alt="RAGsume logo" width={300} height={150} loading="eager"/>
 
           <nav
             className="flex gap-0 border border-border"
