@@ -14,6 +14,7 @@ import { MessageBubble } from "./MessageBubble";
 import { SourceTrace } from "./SourceTrace";
 import { ExampleQuestions } from "./ExampleQuestions";
 import Image from "next/image";
+import { LoadingSpinner } from "./LoadingSpinner";
 
 function createId(): string {
   return crypto.randomUUID();
@@ -321,13 +322,16 @@ export function ChatWidget() {
               </button>
             </div>
             {isStreaming && (
-              <button
-                type="button"
-                onClick={cancelStream}
-                className="focus-ring mt-2 font-mono text-xs text-text-muted hover:text-text-primary"
-              >
-                Cancel (Esc)
-              </button>
+              <div className="mt-2 flex items-center gap-2">
+                <LoadingSpinner />
+                <button
+                  type="button"
+                  onClick={cancelStream}
+                  className="focus-ring font-mono text-xs text-text-muted hover:text-text-primary"
+                >
+                  Cancel (Esc)
+                </button>
+              </div>
             )}
           </form>
         </div>
