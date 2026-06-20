@@ -6,11 +6,15 @@ const QUESTIONS = [
   "What experience do you have building AI agents or LLM-powered applications?", "Can you walk me through your strongest project in this space?", "Have you worked with vector databases like Qdrant before?", "What's your experience level with Go, and how does it apply here?", "What's an example of a real technical tradeoff you had to make?", "Do you have backend engineering experience outside of AI work?", "What's the most complex system you've built end to end?", "I have a job description — can you tell me how good a fit this is?", "Have you built anything involving authentication or payment systems?", "What would make you a strong hire for an AI agent engineering role?"
 ];
 
+interface ExampleQuestionsProps {
+  onSelectQuestion: (question: string) => void;
+}
+
 /**
  * Randomly selects a subset of questions to display.
  * The component memoizes the selection so it stays constant for the session.
  */
-export function ExampleQuestions() {
+export function ExampleQuestions({ onSelectQuestion }: ExampleQuestionsProps) {
   // selected is null during the initial server render.
   // Initialize with empty array to ensure server and client render the same structure.
   const [selected, setSelected] = useState<string[]>([]);
@@ -47,21 +51,7 @@ export function ExampleQuestions() {
             <li
               key={i}
               className="cursor-pointer hover:underline"
-              onClick={() => {
-                const el = document.getElementById('chat-input') as HTMLTextAreaElement | null;
-                if (el) {
-                  el.value = q;
-                  // Dispatch input and change events to ensure React state updates
-                  // Use InputEvent for better compatibility with React's synthetic event system
-                  // Create an InputEvent with the new value to ensure React captures it correctly
-                  // Use InputEvent with the new text so React's synthetic event system captures the value.
-                  const inputEvent = new InputEvent('input', { bubbles: true, cancelable: true, data: q });
-                  const changeEvent = new Event('change', { bubbles: true, cancelable: true });
-                  el.dispatchEvent(inputEvent);
-                  el.dispatchEvent(changeEvent);
-                  el.focus();
-                }
-              }}
+              onClick={() => onSelectQuestion(q)}
             >
               {q}
             </li>
