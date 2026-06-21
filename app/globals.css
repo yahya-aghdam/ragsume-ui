@@ -50,6 +50,21 @@ body::-webkit-scrollbar-thumb {
   border: 3px solid var(--scrollbar-bg);
 }
 
+/* Smaller scrollbars on touch / small screens */
+@media (max-width: 640px), (pointer: coarse) {
+  html::-webkit-scrollbar,
+  body::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  html::-webkit-scrollbar-thumb,
+  body::-webkit-scrollbar-thumb {
+    border-radius: 3px;
+    border: 1px solid var(--scrollbar-bg);
+  }
+}
+
 /* Firefox */
 html, body {
   scrollbar-width: thin;
@@ -132,6 +147,17 @@ html, body {
   border-collapse: collapse;
   margin-bottom: 0.75rem;
   font-size: 0.875rem;
+}
+
+/* Wrap tables in a horizontally scrollable container on small screens */
+.prose-ragsume .table-wrap {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin-bottom: 0.75rem;
+}
+
+.prose-ragsume .table-wrap table {
+  margin-bottom: 0;
 }
 
 .prose-ragsume th,

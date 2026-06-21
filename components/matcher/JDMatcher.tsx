@@ -71,7 +71,7 @@ export function JDMatcher() {
   };
 
   return (
-    <div className="flex h-full flex-col px-4 py-4">
+    <div className="flex h-full flex-col py-3 sm:py-4">
       <form
         className="flex shrink-0 flex-col gap-2"
         onSubmit={(event) => {
@@ -93,7 +93,7 @@ export function JDMatcher() {
           onKeyDown={handleKeyDown}
           disabled={isStreaming}
           placeholder="Paste a job description to evaluate fit…"
-          className="focus-ring resize-y border border-border bg-bg-surface px-3 py-2 text-sm text-text-primary placeholder:text-text-muted disabled:opacity-50"
+          className="focus-ring resize-y border border-border bg-bg-surface px-3 py-2 text-base text-text-primary placeholder:text-text-muted disabled:opacity-50 sm:text-sm"
         />
         <div className="flex items-center gap-3">
           <button

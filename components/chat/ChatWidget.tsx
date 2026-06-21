@@ -194,13 +194,13 @@ export function ChatWidget() {
   };
 
   return (
-    <div className="mx-auto flex h-dvh w-full max-w-3xl flex-col">
-      <header className="shrink-0 border-b border-border px-4 py-3">
-        <div className="flex items-center justify-between gap-3">
-        <Image src="/logo.svg" alt="RAGsume logo" width={300} height={150} style={{ width: 300, height: 150 }} loading="eager"/>
+    <div className="mx-auto flex h-dvh w-full max-w-5xl flex-col px-3 sm:px-6 lg:px-8">
+      <header className="shrink-0 border-b border-border py-2 sm:py-3">
+        <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between sm:gap-3">
+        <Image src="/logo.svg" alt="RAGsume logo" width={300} height={150} className="h-auto w-full max-w-[180px] sm:max-w-[300px]" loading="eager"/>
 
           <nav
-            className="flex gap-0 border border-border"
+            className="flex w-fit gap-0 border border-border self-start sm:self-auto"
             role="tablist"
             aria-label="Main sections"
           >
@@ -232,7 +232,7 @@ export function ChatWidget() {
 
         {activeTab === "chat" && (
           <div
-            className="mt-1 flex gap-0 border border-border w-fit"
+            className="mt-2 flex w-fit gap-0 border border-border sm:mt-1"
             role="group"
             aria-label="Response mode"
           >
@@ -274,7 +274,7 @@ export function ChatWidget() {
             aria-live="polite"
             aria-busy={isStreaming}
             aria-label="Chat messages"
-            className="flex-1 overflow-y-auto px-4 py-4"
+            className="flex-1 overflow-y-auto py-3 sm:py-4"
           >
             {messages.length === 0 ? (
                 <ExampleQuestions
@@ -311,13 +311,13 @@ export function ChatWidget() {
           </div>
 
           <form
-            className="shrink-0 border-t border-border px-4 py-3"
+            className="shrink-0 border-t border-border py-2 sm:py-3"
             onSubmit={(event) => {
               event.preventDefault();
               void handleSend();
             }}
           >
-          <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-center">
+          <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
               <label htmlFor="chat-input" className="sr-only">
                 Message
               </label>
@@ -331,13 +331,13 @@ export function ChatWidget() {
                     disabled={isStreaming}
                     placeholder="Ask a question…"
                     autoFocus
-                    className="focus-ring min-h-[2.75rem] flex-1 resize-none border border-border bg-bg-surface px-3 py-2 text-sm text-text-primary placeholder:text-text-muted disabled:opacity-50"
+                    className="focus-ring min-h-[2.75rem] flex-1 resize-none border border-border bg-bg-surface px-3 py-2 text-base text-text-primary placeholder:text-text-muted disabled:opacity-50 sm:text-sm"
                   />
                   <button
                     type="submit"
                     disabled={isStreaming || !input.trim()}
                     onMouseDown={(e) => e.preventDefault()}
-                    className="focus-ring shrink-0 border border-border bg-bg-elevated px-4 py-2 font-mono text-xs text-text-primary transition-colors hover:bg-bg-surface disabled:opacity-50 sm:py-2.5 mx-auto"
+                    className="focus-ring shrink-0 self-stretch border border-border bg-bg-elevated px-6 py-2 font-mono text-xs text-text-primary transition-colors hover:bg-bg-surface disabled:opacity-50 sm:py-2.5"
                   >
                 {isStreaming ? "Streaming…" : "Send"}
               </button>
@@ -354,7 +354,8 @@ export function ChatWidget() {
                 </button>
               </div>
             )}
-            <div className="font-mono text-xs mt-3 justify-center text-gray-600">Note: This project works with AI, and AI can make mistakes.</div>
+            <div className="mt-3 text-center font-mono text-[10px] leading-relaxed text-gray-600 sm:text-xs">Note: This project works with AI, and AI can make mistakes.</div>
+            <div className="text-center font-mono text-[10px] leading-relaxed text-gray-600 sm:text-xs">The model of LLM is gpt-oss-120b free version from openrouter.</div>
           </form>
         </div>
       ) : (

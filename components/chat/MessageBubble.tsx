@@ -120,6 +120,21 @@ function CitationAwareMarkdown({
           }
           return <li>{children}</li>;
         },
+        table: ({ children }) => (
+          <div className="table-wrap">
+            <table>{children}</table>
+          </div>
+        ),
+        pre: ({ children }) => (
+          <pre className="overflow-x-auto [-webkit-overflow-scrolling:touch]">
+            {children}
+          </pre>
+        ),
+        code: ({ className, children, ...props }) => (
+          <code className={`${className ?? ""} break-words`} {...props}>
+            {children}
+          </code>
+        ),
       }}
     >
       {content}

@@ -34,7 +34,7 @@ export function ExampleQuestions({ onSelectQuestion }: ExampleQuestionsProps) {
   if (selected.length === 0) {
     return (
       <div className="font-mono text-xs text-text-muted">
-         <div className="font-bold mt-2 text-lg">You are in AI based resume of `Yahya Parvin Aghdam`</div>
+         <div className="mt-2 text-base font-bold sm:text-lg">You are in AI based resume of `Yahya Parvin Aghdam`</div>
         <p className="mb-2">Try one of these example questions:</p>
         <ul className="list-disc list-inside space-y-1"></ul>
       </div>
@@ -43,14 +43,14 @@ export function ExampleQuestions({ onSelectQuestion }: ExampleQuestionsProps) {
 
   return (
     <div className="font-mono text-xs text-text-muted">
-      <div className="font-bold mt-2 text-lg">You are in AI based resume of `Yahya Parvin Aghdam`</div>
-      <div className="mt-2 mb-5">Linkedin: <a href="https://www.linkedin.com/in/yahya-aghdam" target="_blank" >https://www.linkedin.com/in/yahya-aghdam</a></div>
+      <div className="mt-2 text-base font-bold sm:text-lg">You are in AI based resume of `Yahya Parvin Aghdam`</div>
+      <div className="mt-2 mb-5 break-words">Linkedin: <a href="https://www.linkedin.com/in/yahya-aghdam" target="_blank" className="break-all text-accent hover:underline" >https://www.linkedin.com/in/yahya-aghdam</a></div>
       <p className="mb-2">Try one of these example questions:</p>
-      <ul className="list-disc list-inside space-y-1">
+      <ul className="grid list-disc list-inside gap-1 sm:grid-cols-2 sm:gap-x-6 sm:gap-y-1">
           {selected.map((q, i) => (
             <li
               key={i}
-              className="cursor-pointer hover:underline"
+              className="cursor-pointer break-words hover:underline"
               onClick={() => onSelectQuestion(q)}
             >
               {q}
@@ -58,14 +58,14 @@ export function ExampleQuestions({ onSelectQuestion }: ExampleQuestionsProps) {
           ))}
       </ul>
       <p className="mt-8">
-        You can see the sources in here: 
+        You can see the sources in here:
       </p>
-      <div className="flex flex-col">
-        <span className="mt-1">
-          Core: <a href="https://github.com/yahya-aghdam/ragsume-core" target="_blank" >https://github.com/yahya-aghdam/ragsume-core</a>
+      <div className="flex flex-col gap-1 sm:flex-row sm:gap-6">
+        <span className="mt-1 break-words">
+          Core: <a href="https://github.com/yahya-aghdam/ragsume-core" target="_blank" className="break-all text-accent hover:underline" >https://github.com/yahya-aghdam/ragsume-core</a>
         </span>
-        <span>
-          UI: <a href="https://github.com/yahya-aghdam/ragsume-ui" target="_blank">https://github.com/yahya-aghdam/ragsume-ui</a>
+        <span className="break-words">
+          UI: <a href="https://github.com/yahya-aghdam/ragsume-ui" target="_blank" className="break-all text-accent hover:underline">https://github.com/yahya-aghdam/ragsume-ui</a>
         </span>
       </div>
     </div>
