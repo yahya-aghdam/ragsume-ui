@@ -355,7 +355,6 @@ export function ChatWidget() {
               </div>
             )}
             <div className="mt-3 text-center font-mono text-[10px] leading-relaxed text-gray-600 sm:text-xs">Note: This project works with AI, and AI can make mistakes.</div>
-            <div className="text-center font-mono text-[10px] leading-relaxed text-gray-600 sm:text-xs">The model of LLM is gpt-oss-120b free version from openrouter.</div>
           </form>
         </div>
       ) : (
